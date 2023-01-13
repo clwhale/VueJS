@@ -1,7 +1,7 @@
 <template>
-    <div>admin menu layout</div>
+    <h1>Admin Menu Layout</h1>
     <main>
-        <aside>admin aside</aside>
-        <router-view></router-view>
+        <aside>Admin Aside</aside>
     </main>
+    <router-view></router-view>
 </template>
