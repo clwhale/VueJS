@@ -37,7 +37,7 @@ const routes = createRouter({
          */
         {path:'/admin', component:AdminLayout, children:[
             {path:'index', component:AdminIndex},
-            {path:'menu', component:AdminMenuLayout, childern:[
+            {path:'menu', component:AdminMenuLayout, children:[
                 {path:'list', component:AdminMenuList}
             ]},
         ]}

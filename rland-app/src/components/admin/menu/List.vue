@@ -1,5 +1,5 @@
 <template>
     <section>
-        <h1>Admin Menu</h1>
+        <h1>Admin Menu List</h1>
     </section>
 </template>
