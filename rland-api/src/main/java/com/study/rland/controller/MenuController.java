@@ -1,5 +1,8 @@
 package com.study.rland.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.rland.entity.Menu;
+import com.study.rland.service.MenuService;
 
 import jakarta.validation.Valid;
 
@@ -28,12 +32,17 @@ import jakarta.validation.Valid;
 @RequestMapping("menus")
 public class MenuController {
 
+    @Autowired
+    private MenuService service;
+
     // EX: /menus?p=1&s=15
     @GetMapping
-    public String getList(
+    public List<Menu> getList(
             @RequestParam(name = "p", defaultValue = "1") int page,
             @RequestParam(name = "s", defaultValue = "15") int size) {
-        return String.format("get Menu List:page=%d, size%d", page, size);
+
+        List<Menu> list = service.getList(page, size);
+        return list;
     }
 
     /**
@@ -55,15 +64,11 @@ public class MenuController {
      * @param id
      * @return
      */
-    public ResponseEntity<Menu> get(@PathVariable int id) {
+    public Menu get(@PathVariable int id) {
 
-        Menu menu = Menu
-                .builder()
-                .name("아이스 카페라떼")
-                .price(6000)
-                .build();
+        Menu menu = service.get(id);
 
-        return new ResponseEntity<Menu>(HttpStatus.OK);
+        return menu;
     }
 
     /**
@@ -77,14 +82,10 @@ public class MenuController {
             MediaType.APPLICATION_XML_VALUE
     })
     public Menu create(@Valid @RequestBody Menu menu) {
+        // name, price만 전달, id 제외
+        service.create(menu);
 
-        System.out.println(menu);
-
-        /**
-         * db에 저장하고
-         * 방금 저장한 데이터를 다시 가져와서
-         */
-
+        // id를 포함한 새로운 Menu객체를 반환.
         return menu;
     }
 
@@ -92,11 +93,9 @@ public class MenuController {
     @PutMapping
     public Menu update(@RequestBody Menu menu) {
 
-        // error
-        Menu m = null;
-        m.getId();
+        Menu newOne = service.update(menu);
 
-        return menu;
+        return newOne;
     }
 
     // 삭제 메소드는 반환할게 없음

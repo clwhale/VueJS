@@ -13,6 +13,6 @@ public class RlandResponseEntityExceptionHandler {
     @ExceptionHandler(value = {Exception.class})
     public ResponseEntity<Object> handlerAnyException(Exception ex, WebRequest request) {
 
-        return new ResponseEntity<>("any", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>("error", new HttpHeaders(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "com.study.rland.Test",
+            "projectName": "rland"
+        },
+        {
+            "type": "java",
             "name": "Spring Boot-RlandApplication<rland>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
