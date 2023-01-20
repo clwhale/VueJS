@@ -3,7 +3,6 @@ package com.study.rland.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.study.rland.entity.Menu;
+import com.study.rland.entity.MenuView;
+import com.study.rland.repository.MenuViewRepository;
 import com.study.rland.service.MenuService;
 
 import jakarta.validation.Valid;
@@ -35,13 +36,19 @@ public class MenuController {
     @Autowired
     private MenuService service;
 
+    @Autowired
+    private MenuViewRepository repository;
+
     // EX: /menus?p=1&s=15
     @GetMapping
-    public List<Menu> getList(
+    public List<MenuView> getList(
             @RequestParam(name = "p", defaultValue = "1") int page,
             @RequestParam(name = "s", defaultValue = "15") int size) {
 
-        List<Menu> list = service.getList(page, size);
+        // List<Menu> list = service.getList(page, size);
+        // List<MenuView> list = repository.findAll();
+        List<MenuView> list = service.getViewList(page, size);
+        
         return list;
     }
 

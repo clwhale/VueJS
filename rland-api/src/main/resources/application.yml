@@ -1,12 +1,17 @@
 spring:
+    datasource:
+        url: jdbc:mariadb://db.newlecture.com:3306/rlanddb
+        driver-class-name: org.mariadb.jdbc.Driver
+        username: rland
+        password: 20220823
+        # url: jdbc:h2:mem:testdb
+        # driver-class-name: org.h2.Driver
+        # username: sa
+        # password: 
+    jpa:
+        database-platform: org.hibernate.dialect.MariaDB106Dialect
+        # database-platform: org.hibernate.dialect.H2Dialect
+        # defer-datasource-initialization: true        
     output:
         ansi:
             enabled: always
-    datasource:
-        url: jdbc:h2:mem:testdb
-        driver-class-name: org.h2.Driver
-        username: sa
-        password: 
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        defer-datasource-initialization: true

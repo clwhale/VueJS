@@ -1,5 +1,7 @@
 package com.study.rland.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +36,7 @@ public class NutritionFacts {
     private int saturatedFat;
     // private int menuId;
 
-    // 연결하는 테이블 중 한곳만 써야함
+    // @JsonBackReference
     // @OneToOne
     // @JoinColumn(name = "id")
     // private Menu menu;

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.study.rland.entity.NutritionFacts;
 import com.study.rland.repository.NutrotionFactsRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,13 @@ public class NutritionFactsController {
             nutrition = opt.get();
 
         return nutrition;
+    }
+
+    @GetMapping
+    public List<NutritionFacts> getList(){
+
+            List<NutritionFacts> list = repository.findAll();
+
+            return list;
     }
 }

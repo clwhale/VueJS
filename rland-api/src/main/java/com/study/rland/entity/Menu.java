@@ -2,11 +2,14 @@ package com.study.rland.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -31,10 +34,14 @@ public class Menu {
     private String name;
     private int price;
 
-    @OneToOne
-    @JoinColumn(name = "id", referencedColumnName = "menuId")
-    private NutritionFacts nutritionFacts;
+    // @JsonManagedReference
+    // @OneToOne(mappedBy = "menu")
+    // @OneToOne
+    // @JoinColumn(name = "id")
+    // private NutritionFacts nutritionFacts;
 
+    // @JsonManagedReference
+    // @OneToMany(mappedBy = "menu")
     // private List<Comment> comments;
 
 }
