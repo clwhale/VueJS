@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.study.rland.entity.Comment;
 import com.study.rland.entity.Menu;
 import com.study.rland.entity.MenuView;
 import com.study.rland.repository.CommentRepository;
@@ -81,9 +82,12 @@ public class DefaultMenuServic implements MenuService {
         List<MenuView> list = viewRepository.findAll();
 
         for(MenuView mv : list) {
-
-            commentRepository.findAll().stream();
-            // mv.setComment(null);
+            List<Comment> c = commentRepository
+                                .findAll()
+                                .stream()
+                                .filter(cmt->cmt.getMenuId()==mv.getId())
+                                .toList();
+            mv.setComment(c);
         }
 
         return list;

@@ -26,7 +26,7 @@ public class Comment {
     private int id;
     private String content;
     private Date regDate;
-    // private int menuId;
+    private int menuId;
 
     // @JsonBackReference
     // @ManyToOne
