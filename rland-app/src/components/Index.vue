@@ -26,27 +26,27 @@
             <h1 class="d-none">인기메뉴</h1>
             <ul class="d-inline-block">
                 <li>
-                    <img height="100" src="./image/product/17.png" alt="딸기청">
+                    <img height="100" src="/image/product/17.png" alt="딸기청">
                     <a target="_blank" href="menu/detail.html">딸기청</a>
                 </li>
                 <li>
-                    <img height="100" src="./image/product/8.png" alt="카페 아메리카노">
+                    <img height="100" src="/image/product/8.png" alt="카페 아메리카노">
                     <a target="_blank" href="menu/detail.html">카페 아메리카노</a>
                 </li>
                 <li>
-                    <img height="100" src="./image/product/28.png" alt="버터쿠키">
+                    <img height="100" src="/image/product/28.png" alt="버터쿠키">
                     <a target="_blank" href="menu/detail.html">버터쿠키</a>
                 </li>
                 <li>
-                    <img height="100" src="./image/product/17.png" alt="딸기청">
+                    <img height="100" src="/image/product/17.png" alt="딸기청">
                     <a target="_blank" href="menu/detail.html">딸기청</a>
                 </li>
                 <li>
-                    <img height="100" src="./image/product/8.png" alt="카페 아메리카노">
+                    <img height="100" src="/image/product/8.png" alt="카페 아메리카노">
                     <a target="_blank" href="menu/detail.html">카페 아메리카노</a>
                 </li>
                 <li>
-                    <img height="100" src="./image/product/28.png" alt="버터쿠키">
+                    <img height="100" src="/image/product/28.png" alt="버터쿠키">
                     <a target="_blank" href="menu/detail.html">버터쿠키</a>
                 </li>
             </ul>
@@ -63,7 +63,7 @@
         
         <article class="">
             <h1 class="font-family-arial">직접 만든 과일청을 맛보세요.</h1>
-            <div><img src="./image/product/17.png" alt="과일청"></div>
+            <div><img src="/image/product/17.png" alt="과일청"></div>
 
             <p>
                 신선한 과일과 알랜드만의 레시피로
@@ -78,7 +78,7 @@
             <h1>
                 직접 구운 수제 쿠키를 만나보세요.
             </h1>
-            <div><img src="./image/product/17.png" alt="과일청"></div>
+            <div><img src="/image/product/17.png" alt="과일청"></div>
 
             <p>
                 신선한 버터 그리고 견과류를
@@ -91,7 +91,7 @@
             <h1>
                 다양한 로스팅으로 다채로운 맛을 느껴보세요.
             </h1>
-            <div><img src="./image/product/18.png" alt="과일청"></div>
+            <div><img src="/image/product/18.png" alt="과일청"></div>
 
                 
             <p>
@@ -105,7 +105,7 @@
             <h1>
                 알랜드 주변의 명소를 찾아보세요.
             </h1>
-            <div><img src="./image/product/19.jpg" alt="과일청"></div>
+            <div><img src="/image/product/19.jpg" alt="과일청"></div>
 
 
             <p>
@@ -143,7 +143,7 @@
                     </p>
                     <div>
                         <a href="https://map.naver.com/v5/search/%EC%95%8C%EB%9E%9C%EB%93%9C/place/1281711613?placePath=%3Fentry=pll%26from=nx%26fromNxList=true&c=14084751.7063168,4258510.9452342,13.3,0,0,0,dh" target="_blank">
-                            <img src="./image/spot/map.png" alt="">
+                            <img src="/image/spot/map.png" alt="">
                         </a>
                     </div>
                 </div>
@@ -151,11 +151,11 @@
             <nav class="item-list">
                 <h1 class="d-none">명소목록</h1>
                 <ul>
-                    <li><img src="./image/spot/b2.jpg" alt="바위"><a href="">바위</a></li>
-                    <li><img src="./image/spot/b13.jpg" alt="명소2"><a href="">명소2</a></li>
-                    <li><img src="./image/spot/b14.jpg" alt="명소3"><a href="">명소3</a></li>
-                    <li><img src="./image/spot/b7.jpg" alt="명소4"><a href="">명소4</a></li>
-                    <li><img src="./image/spot/b9.jpg" alt="명소5"><a href="">명소5</a></li>
+                    <li><img src="/image/spot/b2.jpg" alt="바위"><a href="">바위</a></li>
+                    <li><img src="/image/spot/b13.jpg" alt="명소2"><a href="">명소2</a></li>
+                    <li><img src="/image/spot/b14.jpg" alt="명소3"><a href="">명소3</a></li>
+                    <li><img src="/image/spot/b7.jpg" alt="명소4"><a href="">명소4</a></li>
+                    <li><img src="/image/spot/b9.jpg" alt="명소5"><a href="">명소5</a></li>
                 </ul>
             </nav>
         </div>
