@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.study.rland.entity.Comment;
@@ -77,16 +78,21 @@ public class DefaultMenuServic implements MenuService {
     }
 
     @Override
-    public List<MenuView> getViewList(int page, int size) {
+    public List<MenuView> getViewList(String query, int page, int size) {
 
-        List<MenuView> list = viewRepository.findAll();
+        // List<MenuView> list = viewRepository
+        //         .findAll()
+        //         .stream()
+        //         .filter(mv -> mv.getName().contains(query))
+        //         .toList();
+        List<MenuView> list = viewRepository.getViewList("%"+query+"%", PageRequest.of(page-1, size));
 
-        for(MenuView mv : list) {
+        for (MenuView mv : list) {
             List<Comment> c = commentRepository
-                                .findAll()
-                                .stream()
-                                .filter(cmt->cmt.getMenuId()==mv.getId())
-                                .toList();
+                    .findAll()
+                    .stream()
+                    .filter(cmt -> cmt.getMenuId() == mv.getId())
+                    .toList();
             mv.setComment(c);
         }
 
