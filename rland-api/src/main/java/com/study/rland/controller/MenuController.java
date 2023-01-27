@@ -87,16 +87,17 @@ public class MenuController {
      * @param menu
      * @return
      */
+    @CrossOrigin(origins = "http://localhost:3333")
     @PostMapping(produces = {}, consumes = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE
     })
     public Menu create(@Valid @RequestBody Menu menu) {
         // name, price만 전달, id 제외
-        service.create(menu);
+        Menu newOne = service.create(menu);
 
         // id를 포함한 새로운 Menu객체를 반환.
-        return menu;
+        return newOne;
     }
 
     // Json이 기본이라 consume을 설정하지 않음

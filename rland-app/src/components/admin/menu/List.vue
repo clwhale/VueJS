@@ -1,4 +1,7 @@
 <script>
+import ConfirmButton from '../../ConfirmButton.vue';
+import ConfirmDlg from '../../ConfirmDlg.vue';
+
 export default {
     data() {
         return {
@@ -8,9 +11,11 @@ export default {
             showRegform: false,
             menu: { name: 'test', price: 0 },
             query: '',
-            open: false
+            open: false,
+            openDlg: false
         };
     },
+    components: { ConfirmButton, ConfirmDlg },
     methods: {
         addMenuBtnClickHandler() {
             this.displayNone = '';
@@ -22,6 +27,29 @@ export default {
             const json = await response.json();
             this.menus = json;
             console.log(json);
+        },
+        async postMenus() {
+            const response = await fetch(`http://localhost:8080/menus`, {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(this.menu)
+            });
+            const json = await response.json();
+            console.log(json);
+            // this.fetchMenus();
+        },
+        dlgCloseHandler(e) {
+            if (e.isOk)
+                this.showRegform = false;
+            console.log('------------------------------------');
+            console.log("closed");
+            console.log('------------------------------------');
+        },
+        createMenuHandler(e) {
+            this.postMenus();
         }
     },
     // 속성
@@ -137,21 +165,15 @@ export default {
                                 </span>
                             </div>
                             <div class="menu-button-list">
-                                <input class="btn btn-line btn-round btn-size-1 btn-bd-blue rounded-0-md" type="submit"
-                                    value="취소" @Click.prevent="open = true">
-                                <teleport to="body">
-                                    <section v-if="open">
-                                        <h1>대화상자</h1>
-                                        <div>
-                                            <p>정말 취소하시겠습니까?</p>
-                                            <button>예</button>
-                                            <button @Click.prevent="open - false">아니요</button>
-                                        </div>
-                                    </section>
-                                </teleport>
+                                <ConfirmButton aa="btn btn-line btn-round btn-size-1 btn-bd-blue rounded-0-md"
+                                    value="취소" />
+                                <confirm-button class="btn btn-line btn-round btn-size-1 btn-bd-blue rounded-0-md"
+                                    value="취소" @onDlgClose="dlgCloseHandler">
+                                    <span style="color: red;">정말 취소하시겠습니까?</span>
+                                </confirm-button>
                                 <input
                                     class="btn btn-fill btn-round rounded-0-md btn-size-1 btn-bd-blue btn-color-blue ml-1"
-                                    type="submit" value="저장">
+                                    type="submit" value="저장" @click.prevent="createMenuHandler">
                             </div>
                         </form>
                     </section>
@@ -176,6 +198,11 @@ export default {
                         <div class="menu-button-list">
                             <input class="btn btn-line btn-round btn-size-1 rounded-0-md" type="submit" value="수정">
                             <input class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit" value="삭제">
+
+                            <!-- <input class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit" value="삭제" 
+                            @click.prevent="openDlg=true">
+                            <ConfirmDlg v-if="openDlg" @clickOk="" @clickCancel=""/> -->
+
                         </div>
                     </form>
                 </section>
@@ -200,7 +227,7 @@ export default {
     </section>
 </template>
 
-<style>
+<style scoped>
 @keyframes bound-in {
     from {
         transform: scale(0);
