@@ -74,7 +74,7 @@ public class DefaultMenuServic implements MenuService {
 
     @Override
     public void delete(int id) {
-
+        repository.delete(Menu.builder().id(id).build());
     }
 
     @Override

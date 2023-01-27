@@ -1,6 +1,6 @@
 <script>
 export default {
-    props: ['class', 'value'],
+    props: ['class', 'value', 'targetId'],
     emits: ['onDlgClose'],
     data() {
         return {
@@ -9,11 +9,13 @@ export default {
     },
     methods: {
         okClickHandler(e) {
+            e.targetId = this.targetId;
             e.isOk=true;
             this.open = false;
             this.$emit('onDlgClose', e);
         },
         cancelClickHandler(e) {
+            e.targetId = this.targetId;
             e.isOk=false;
             this.open = false;
             this.$emit('onDlgClose', e);
@@ -21,6 +23,7 @@ export default {
     }
 }
 </script>
+
 <template>
     <input :class="class" type="submit" :value="value" @click.prevent="open = true">
     <teleport to="body">

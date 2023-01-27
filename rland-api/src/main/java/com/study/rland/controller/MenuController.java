@@ -113,6 +113,8 @@ public class MenuController {
     // 삭제 메소드는 반환할게 없음
     @DeleteMapping("{id}")
     public ResponseEntity<Void> delete(@PathVariable int id) {
+        System.out.println(id);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 

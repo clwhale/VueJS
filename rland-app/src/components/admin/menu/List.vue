@@ -5,14 +5,15 @@ import ConfirmDlg from '../../ConfirmDlg.vue';
 export default {
     data() {
         return {
-            menus: [{ id: 1, name: "아메리카노" }, { id: 2, name: "카페라떼" }, {}, {}],
+            menus: [],
             displayNone: 'd-none',
             hideRegform: true,
             showRegform: false,
-            menu: { name: 'test', price: 0 },
+            menu: { name: 'test', price: 0},
             query: '',
             open: false,
-            openDlg: false
+            openDlg: false,
+            error: false,
         };
     },
     components: { ConfirmButton, ConfirmDlg },
@@ -23,10 +24,30 @@ export default {
             this.showRegform = !this.showRegform;
         },
         async fetchMenus() {
-            const response = await fetch(`http://localhost:8080/menus?q=${this.query}`);
-            const json = await response.json();
-            this.menus = json;
-            console.log(json);
+            try {
+                const response = await fetch(`http://localhost:8080/menus?q=${this.query}`);
+                const json = await response.json();
+                this.menus = json;
+                console.log(json);
+            } catch (error) {
+                this.error = error;
+            } finally {
+
+            }
+
+        },
+        async removeMenus(id) {
+            try {
+                const response = await fetch(`http://localhost:8080/menus/${id}`, {
+                    method: 'DELETE'
+                });
+                this.fetchMenus();
+            } catch (error) {
+                this.error = error;
+            } finally {
+
+            }
+
         },
         async postMenus() {
             const response = await fetch(`http://localhost:8080/menus`, {
@@ -50,6 +71,14 @@ export default {
         },
         createMenuHandler(e) {
             this.postMenus();
+        },
+        removeDlgCloseHandler(e) {
+            if (e.isOk) {
+                console.log('------------------------------------');
+                console.log(e.targetId);
+                console.log('------------------------------------');
+                this.removeMenus(e.targetId);
+            }
         }
     },
     // 속성
@@ -139,6 +168,10 @@ export default {
 
 
         <section class="menu-section">
+            <div v-if="error" style="color:red; text-align:center;">
+                오류가 발생하였습니다. <br>
+                {{ error }}
+            </div>
             <h1 class="d-none">메뉴목록</h1>
             <div class="menu-list">
                 <transition name="reg-form">
@@ -184,7 +217,7 @@ export default {
                         <div class="menu-img-box">
                             <a href="detail.html"><img class="menu-img" src="/image/product/12.png"></a>
                         </div>
-                        <div class="menu-price">4500 원</div>
+                        <div class="menu-price">{{ menus.price }}</div>
                         <div class="menu-option-list">
                             <span class="menu-option">
                                 <input class="menu-option-input" type="checkbox">
@@ -197,11 +230,15 @@ export default {
                         </div>
                         <div class="menu-button-list">
                             <input class="btn btn-line btn-round btn-size-1 rounded-0-md" type="submit" value="수정">
-                            <input class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit" value="삭제">
+                            <!-- <input class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit" value="삭제"> -->
 
                             <!-- <input class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit" value="삭제" 
                             @click.prevent="openDlg=true">
                             <ConfirmDlg v-if="openDlg" @clickOk="" @clickCancel=""/> -->
+                            <ConfirmButton class="btn btn-fill btn-round rounded-0-md btn-size-1 ml-1" type="submit"
+                                value="삭제" :targetId="menus.id" @onDlgClose="removeDlgCloseHandler">
+                                <span style="color: red;">{{ menus.id }}정말 삭제하시겠습니까?</span>
+                            </ConfirmButton>
 
                         </div>
                     </form>
