@@ -61,6 +61,9 @@ export default {
             const json = await response.json();
             console.log(json);
             // this.fetchMenus();
+            // this.menus.push(json); // 뒤에서부터 추가
+            this.menus.unshift(json); // 앞에서부터 추가
+            this.showRegform = false;
         },
         dlgCloseHandler(e) {
             if (e.isOk)

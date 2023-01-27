@@ -11,6 +11,6 @@ import com.study.rland.entity.MenuView;
 
 public interface MenuViewRepository extends JpaRepository<MenuView, Integer> {
     
-    @Query(value = "from MenuView mv where mv.name like :query")
+    @Query(value = "from MenuView mv where mv.name like :query order by id desc")
     List<MenuView> getViewList(@Param("query") String query, Pageable pageable);
 }
