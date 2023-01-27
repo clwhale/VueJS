@@ -30,6 +30,7 @@ import jakarta.validation.Valid;
  * @RestController는 @Controller에 @ResponseBody가 추가된 것으로
  *                  HTTP응답데이터(body)에 자바 객체가 매핑되어 전달 된다.
  */
+// @CrossOrigin(origins = "http://localhost:3333")
 @RestController
 @RequestMapping("menus")
 public class MenuController {
@@ -41,7 +42,7 @@ public class MenuController {
     private MenuViewRepository repository;
 
     // EX: /menus?p=1&s=15
-    @CrossOrigin(origins = "http://localhost:3333")
+    // @CrossOrigin(origins = "http://localhost:3333")
     @GetMapping
     public List<MenuView> getList(
             @RequestParam(name = "q", defaultValue = "") String query,
@@ -87,7 +88,7 @@ public class MenuController {
      * @param menu
      * @return
      */
-    @CrossOrigin(origins = "http://localhost:3333")
+    // @CrossOrigin(origins = "http://localhost:3333")
     @PostMapping(produces = {}, consumes = {
             MediaType.APPLICATION_JSON_VALUE,
             MediaType.APPLICATION_XML_VALUE
