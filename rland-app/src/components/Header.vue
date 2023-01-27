@@ -6,7 +6,7 @@
             <ul class="main-menu d-none d-inline-flex-sm">
                 <li><router-link to="/menu/list">카페메뉴</router-link></li>
                 <li><router-link to="/">공지사항</router-link></li>
-                <li><router-link to="/">로그인</router-link></li>
+                <li><router-link to="/user/login">로그인</router-link></li>
                 <li><router-link to="/admin/menu/list">카페메뉴관리</router-link></li>
             </ul>
             <div class="d-none-sm"><a class="icon icon-menu icon-white" href="?m=on">메뉴버튼</a></div>

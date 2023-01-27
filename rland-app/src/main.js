@@ -11,6 +11,8 @@ import AdminMenuLayout from "./components/admin/menu/Layout.vue";
 import AdminMenuList from "./components/admin/menu/List.vue";
 import AdminIndex from "./components/admin/Index.vue"
 
+import UserLogin from "./components/user/Login.vue"
+
 import App from './App.vue'
 
 
@@ -35,6 +37,9 @@ const routes = createRouter({
          * Admin도 루트 경로에서 시작하지만 레이아웃이 다르기 때문에
          * ui를 기준으로 종속관계를 만들어야 한다.
          */
+        {path:'/user', component:Layout, children:[
+            {path:'login', component:UserLogin}
+        ]},
         {path:'/admin', component:AdminLayout, children:[
             {path:'index', component:AdminIndex},
             {path:'menu', component:AdminMenuLayout, children:[
